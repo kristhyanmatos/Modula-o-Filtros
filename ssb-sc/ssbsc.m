@@ -12,9 +12,10 @@ wc = (fc/(fa/2))*pi;
 wt = wc - wp;   # frenquencia de transferencia
 wci = (wc+wp)/2; # frenquencia de corte intermediaria
 
-M = ceil((6*6*pi)/wt) + 1;
+M = ceil((6.6*pi)/wt) + 1;
 hd = passaBaixaideal(wci,M);
 w_ham = hamming(M)';
 h = hd.*w_ham;
+
 sinalFiltrado = conv(h,sinal);
 trf(sinalFiltrado,fa);
