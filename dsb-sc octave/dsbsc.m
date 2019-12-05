@@ -1,7 +1,7 @@
-function [S, frequencia] = dsbsc(s1,s2,fs)
+function [S, frequencia] = dsbsc(s1,s2,fs,t)
   aux = s1.*s2;
   figure();
-  plot(fs,aux);
+  plot(t,aux);
   title('Modulação DSB-SC no tempo');
   xlabel('Tempo em s');
   ylabel('Amplitude');
