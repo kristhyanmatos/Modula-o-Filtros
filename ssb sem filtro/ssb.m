@@ -1,0 +1,11 @@
+fa = 1000;
+t = [0:1/fa:1];
+fm = 4;
+mt = cos(2*pi*fm*t);
+fp = 50;
+portadora1 = cos(2*pi*fp*t);
+portadora2 = sin(2*pi*fp*t);
+I = mt.*portadora1;
+Q = imag(hilbert(mt)).*portadora2;
+sinal  = I+Q;
+plot(t,sinal);
