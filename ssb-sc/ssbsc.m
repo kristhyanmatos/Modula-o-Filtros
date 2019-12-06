@@ -17,5 +17,8 @@ hd = passaBaixaideal(wci,M);
 w_ham = hamming(M)';
 h = hd.*w_ham;
 
+trf(h,fa);
+trf(sinal,fa);
+
 sinalFiltrado = conv(h,sinal);
 trf(sinalFiltrado,fa);
