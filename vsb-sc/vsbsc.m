@@ -5,7 +5,12 @@ fm = 4;
 mt = cos(2*pi*fm*t) + 0.4*sin(2*pi*6*t) + 0.6*cos(2*pi*12*t)+0.5*cos(2*pi*13*t)+0.3*sin(2*pi*16*t);
 fp = 50;
 portadora1 = cos(2*pi*fp*t);
-
+  figure();
+  plot(t,mt);
+  title('sinal no tempo');
+  xlabel('Tempo em s');
+  ylabel('Amplitude');
+  
 #]]]]]]]]]]]]]]]]]]]]]
 # SSB-SC
 portadora2 = sin(2*pi*fp*t);
@@ -34,3 +39,5 @@ vsb = (ssbsc.+dsbsc)/2;
   xlabel('Tempo em s');
   ylabel('Amplitude');
   trf(vsb,fa);
+  
+# ()()()()(()()())())()()()()()()()
