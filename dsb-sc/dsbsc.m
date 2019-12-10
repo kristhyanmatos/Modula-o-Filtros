@@ -19,7 +19,7 @@ function [S,frequencia] = trf(s,fs)
   
   figure();
   plot(frequencia(1:fc),abs(S));
-  title('Análise de Espectro');
+  title('Análise DSB-SC de Espectro');
   xlabel('Frequência em Hz');
   ylabel('Amplitude');
   

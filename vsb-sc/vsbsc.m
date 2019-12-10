@@ -1,8 +1,7 @@
 # DEPEDENCIAS
-fa = 1000;
+fa = 100000;
 t = [0:1/fa:1];
-fm = 4;
-mt = cos(2*pi*fm*t) + 0.4*sin(2*pi*6*t) + 0.6*cos(2*pi*12*t)+0.5*cos(2*pi*13*t)+0.3*sin(2*pi*16*t);
+mt = cos(2*pi*4*t) + 0.4*sin(2*pi*6*t) + 0.6*cos(2*pi*12*t)+0.5*cos(2*pi*13*t)+0.3*sin(2*pi*16*t);
 fp = 50;
 portadora1 = cos(2*pi*fp*t);
   figure();
