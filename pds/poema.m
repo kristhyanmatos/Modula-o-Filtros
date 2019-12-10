@@ -2,8 +2,8 @@ sinal = load("proj.mat");
 fa  = 1E6;
 t = [0:1/fa:1];
 
-fp = 2300;  # frenquencia de passagem
-fc = 3800; # frequencia de corte
+fp = 13000;  # frenquencia de passagem
+fc = 16000; # frequencia de corte
 #sound(sinal,fa);
 # normalização das frequencias
 wp = (fp/(fa/2))*pi;
