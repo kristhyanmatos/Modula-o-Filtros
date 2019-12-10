@@ -1,24 +1,39 @@
-fa  = 1E6;
+fa = 1000;
 t = [0:1/fa:1];
-sinal = 0.3*sin(2*pi*2000*t) + 0.4*sin(2*pi*5000*t);
+mt = cos(2*pi*4*t) + 0.4*sin(2*pi*6*t) + 0.6*cos(2*pi*12*t);
+fp = 100;
+portadora1 = cos(2*pi*fp*t);
+portadora2 = sin(2*pi*fp*t);
+I = mt.*portadora1;
+Q = imag(hilbert(mt)).*portadora2;
+sinal  = I.+Q;
 
-fp = 2300;  # frenquencia de passagem
-fc = 3800; # frequencia de corte
+figure();
+plot(t,Q);
+title('Sinal Q - Análise de Tempo');
+xlabel('tempo em s');
+ylabel = ('Amplitude');
 
-# normalização das frequencias
-wp = (fp/(fa/2))*pi;
-wc = (fc/(fa/2))*pi;
+trf(I,fa);
+trf(Q,fa);
 
-wt = wc - wp;   # frenquencia de transferencia
-wci = (wc+wp)/2; # frenquencia de corte intermediaria
+figure();
+plot(t,sinal);
+title('SSB-SC - Análise de Tempo');
+xlabel('tempo em s');
+ylabel = ('Amplitude');
 
-M = ceil((6.6*pi/wt)) + 1;
-hd = passaBaixaideal(wci,M);
-w_ham = hamming(M)';
-h = hd.*w_ham;
-
-trf(h,fa);
-trf(sinal,fa);
-
-sinalFiltrado = conv(h,sinal);
-trf(sinalFiltrado,fa);
+# Análise na frequência
+  normal = length(mt);
+  aux = 0:normal-1;
+  T = normal/fa;
+  frequencia = aux/T;
+  S = fftn(mt)/normal;
+  fc = ceil(normal/2);
+  S = S(1:fc);
+  
+  figure();
+  plot(frequencia(1:fc),abs(S));
+  title('SSB-SC - Análise de Espectro');
+  xlabel('Frequência em Hz');
+  ylabel('Amplitude');
