@@ -6,7 +6,7 @@ portadora1 = cos(2*pi*fp*t);
 portadora2 = sin(2*pi*fp*t);
 I = mt.*portadora1;
 Q = imag(hilbert(mt)).*portadora2;
-sinal  = I.+Q;
+sinal  = I.-Q;
 
 figure();
 plot(t,Q);
@@ -24,11 +24,11 @@ xlabel('tempo em s');
 ylabel = ('Amplitude');
 
 # Análise na frequência
-  normal = length(mt);
+  normal = length(sinal);
   aux = 0:normal-1;
   T = normal/fa;
   frequencia = aux/T;
-  S = fftn(mt)/normal;
+  S = fftn(sinal)/normal;
   fc = ceil(normal/2);
   S = S(1:fc);
   

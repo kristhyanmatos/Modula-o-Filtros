@@ -15,7 +15,7 @@ portadora2 = sin(2*pi*fp*t);
 # SSB-SC
 I = mt.*portadora1;
 Q = imag(hilbert(mt)).*portadora2;
-ssbsc  = I+Q;
+ssbsc  = I.-Q;
 plot(t,ssbsc);
 trf(ssbsc,fa);
 
