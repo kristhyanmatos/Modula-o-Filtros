@@ -1,21 +1,21 @@
-sinal = load("proj.mat");
-fa  = 1E6;
-t = [0:1/fa:1];
+function sinalPassado = poema(sinal,fa)
+  #[sinal, fa] = audioread('C:\Users\kristhyanmatos\Documents\GitHub\Modula-o-Filtros\pds\audio.wav');
+  
+  fp = 7000;  # frenquencia de passagem
+  fc = 8500; # frequencia de corte
+  #sound(sinal,fa);
+  # normalização das frequencias
+  wp = (fp/(fa/2))*pi;
+  wc = (fc/(fa/2))*pi;
 
-fp = 13000;  # frenquencia de passagem
-fc = 16000; # frequencia de corte
-#sound(sinal,fa);
-# normalização das frequencias
-wp = (fp/(fa/2))*pi;
-wc = (fc/(fa/2))*pi;
+  wt = wc - wp;   # frenquencia de transferencia
+  wci = (wc+wp)/2; # frenquencia de corte intermediaria
 
-wt = wc - wp;   # frenquencia de transferencia
-wci = (wc+wp)/2; # frenquencia de corte intermediaria
+  M = ceil((6.6*pi/wt)) + 1;
+  hd = passaBaixaideal(wci,M);
+  w_ham = hamming(M)';
+  h = hd.*w_ham;
 
-M = ceil((6.6*pi/wt)) + 1;
-hd = passaBaixaideal(wci,M);
-w_ham = hamming(M)';
-h = hd.*w_ham;
-
-sinalFiltrado = conv(h,sinal);
-trf(sinalFiltrado,fa);
+  sinalPassado = conv(h,sinal);
+  trf(sinalPassado,fa);
+endfunction
