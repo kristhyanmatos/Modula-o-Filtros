@@ -1,19 +1,22 @@
 # formula conceitual
 #  A0cos(w0+Bmt);
-kf = 2.5;                             #
-fc = 1/10;                            # Frequência da portadora
-fm = 1/50;                            # Frequência do sinal mt
-n = [1:fm/4:256];                     # Periodo de amostragem
-b = 2*pi*kf;                          # Índice de modulação
-wc = 2*pi*fc;                         # Normalização da frequência da portadora
+fa = 1E6;                             # Frequência de amostragem
+t  = [0:1/fa:1];                      # Periodo de amostragem
+kf = 1000;                              # Fator de sensibilidade de frequência
+fp = 1000;                            # Frequência da portadora
+fm = 300;                             # Frequência do sinal mt
+wc = 2*pi*fp;                         # Normalização da frequência da portadora
 wm = 2*pi*fm;                         # Normalização da frequência do sinal mt
-y = cos(wc*n);                        # Portadora
-plot(y);
-mt = cos(wm*n);                       # Sinal
-z = cos(wc*n + b*mt);                 # Formula conceitual
+b  = (kf)/wm;                         # Índice de modulação
+y  = cos(wc*t);                       # Portadora
+mt = cos(wm*t);                       # Sinal
 
-plot(y); title('portadora');
+sinalModuladoFm = cos(wc*t + b*mt);                 # Formula conceitual
+
+
+
+plot(t,y); title('portadora');
 figure();
-plot(x); title('sinal');
+plot(t,mt); title('sinal');
 figure();
-plot(z); title('Modulação em FM');
+plot(t,sinalModuladoFm); title('Modulação em FM');
