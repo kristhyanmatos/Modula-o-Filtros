@@ -3,11 +3,10 @@
 
 # filtro passa faixa
 # n ordem [intervalo min e max]
-h1 = fir1(200, [0.6 0.85]);
+h1 = fir1(100, [0.18 0.42]);
 
 # convolução entre os sinais
 filtradoPF = filter(h1,1,sinal);
-
 # demodulação
 Vc(1) = 0;                              % initial capacitor voltage
 for i = 2:length(filtradoPF)
@@ -18,9 +17,13 @@ for i = 2:length(filtradoPF)
     end
 end
 
+# filtro passa faixa voz
+hv = fir1(200, [0.025 0.13]);
+filtradoVoz = filter(hv,1,Vc);
+
 # filtro passa baixa
-fp = 1800;  # frenquencia de passagem
-fc = 2200; # frequencia de corte
+fp = 4500;  # frenquencia de passagem
+fc = 5000; # frequencia de corte
 
 # normalização das frequencias
 wp = (fp/(fa/2))*pi;
@@ -34,4 +37,4 @@ hd = passaBaixaideal(wci,M);
 w_ham = hamming(M)';
 h2 = hd.*w_ham;
 
-sinalPassado = conv(h2,Vc);
+sinalPassado = conv(h2,filtradoVoz); 
