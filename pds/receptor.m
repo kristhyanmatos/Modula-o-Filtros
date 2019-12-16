@@ -1,6 +1,8 @@
 # ETAPA 1
 # Carrega o sinal de mensagem
 [sinal, fa] = audioread('C:\Users\ssoar\Documents\GitHub\Modula-o-Filtros\pds\audio.wav');
+portadora1 = 16000;
+protadora2 = 7000;
 
 # ETAPA 2
 # Filtro passa faixa
@@ -12,7 +14,8 @@ filtradoPF = conv(h1,sinal);
 
 # ETAPA 3
 # Demodulação
-sinalDemodulado(1) = 0;                              
+#sinalDemo = amdemod(filtradoPF,protadora2,fa);
+sinalDemodulado(1) = 0;                          
 for i = 2:length(filtradoPF)
     if filtradoPF(i) > sinalDemodulado(i-1)
         sinalDemodulado(i) = filtradoPF(i);
