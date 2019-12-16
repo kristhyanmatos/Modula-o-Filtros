@@ -1,5 +1,7 @@
+% ETAPA 1
 [sinal, fa] = audioread('C:\Users\ssoar\Documents\GitHub\Modula-o-Filtros\pds\audio.wav');
 
+% ETAPA 2
 % Poema 1
 % Filtro passa baixa
 fcl = 11000;
@@ -13,6 +15,7 @@ wcu = fcu/(fa/2);
 [bu, au] = butter(10,wcu,'high');
 filtradoPA = filtfilt(b,au,sinal);
 
+% ETAPA 3
 % Demodulação
 % Poema 1
 sinalDemodulado1(1) = 0;                          
@@ -33,6 +36,7 @@ for i = 2:length(filtradoPA)
     end
 end
 
+% ETAPA 4
 % Filtro passa baixa
 fc = 3500;
 wc =fc2/(fa/2); 
